@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+#backgrounImage{
+  background-image: url('/assets/tubnail.jpg'); /* Relative to assets folder */
+  background-size: cover;
+  background-position: center;
+
+}

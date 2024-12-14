@@ -1,0 +1,98 @@
+<div
+  class="d-flex justify-content-center align-items-center vh-100"
+  id="backgrounImage"
+>
+  <div class="col-6 bg-white p-4 rounded shadow-lg">
+    <div class="d-flex justify-content-center mb-2">
+      <img src="/assets/logo.webp" height="100" />
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="input"
+          class="form-control"
+          id="Username"
+          aria-describedby="Username"
+          placeholder="Enter Username"
+          formControlName="Username"
+        />
+      </div>
+      <div class="form-group mt-2">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter Email"
+          formControlName="Email"
+        />
+      </div>
+      <div class="form-group mt-2">
+        <input
+          type="password"
+          class="form-control"
+          id="Password"
+          placeholder="Password"
+          formControlName="Password"
+        />
+      </div>
+<div class="form-control mt-2">
+
+  <input
+    class="form-control"
+    type="file"
+    id="formFile"
+    formControlName="ImageURL"
+    (change)="onFileSelected($event)"
+  />
+</div>
+
+      <div class="d-flex p-2 col-12">
+        <!-- Seller Radio Button -->
+        <div class="form-check col-lg-4 col-sm-12">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="role"
+            id="flexRadioDefault2"
+            checked
+            formControlName="role"
+            value="Seller"
+          />
+          <label class="form-check-label" for="flexRadioDefault2">
+            Seller
+          </label>
+        </div>
+
+        <!-- Customer Radio Button -->
+        <div class="form-check col-lg-4 col-sm-12">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="role"
+            id="flexRadioDefault3"
+            formControlName="role"
+
+            value="Customer"
+          />
+          <label class="form-check-label" for="flexRadioDefault3">
+            Customer
+          </label>
+        </div>
+      </div>
+
+      <!-- Log In Button -->
+      <div class="form-group">
+        <button type="submit" class="form-control btn btn-success">
+          Sign up
+        </button>
+      </div>
+      @if(isEmailExist){
+
+      <div class="form-group">
+        <p class="text-danger">Email Alreay Exist!</p>
+      </div>
+      }
+      <a href="/"> Log in </a>
+    </form>
+  </div>
+</div>
