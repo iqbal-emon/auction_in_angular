@@ -4,6 +4,7 @@ import { ProductsService } from './products.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent implements OnInit {
   products:[]=[];
-  constructor(private productService: ProductsService) {}
+
+  constructor(private productService: ProductsService) {
+
+  }
+
+
+
   ngOnInit() {
     this.getAllProduct();
   }

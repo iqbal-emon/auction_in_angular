@@ -35,7 +35,8 @@ export class LoginComponent  {
          this.router.navigate(['/dashboard']); // Example redirect after login success
         },
         error: (err) => {
-          console.log(err);
+    
+
 
           this.errorMessage = err?.error || 'An error occurred during sign-in.';
         }

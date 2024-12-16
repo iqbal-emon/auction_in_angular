@@ -54,7 +54,7 @@ onSubmit(): void {
         alert('Signup successful!');
       },
       error: (err:HttpErrorResponse) => {
-        console.error('Error details:', err);
+       
 
         // Check if the error response contains the message "Email already exists."
         if (err.status === 400 && err.error && err.error.message === "Email already exists.") {

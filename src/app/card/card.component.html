@@ -1,5 +1,9 @@
-<div class="card " style="width: 15rem; margin: 10px;">
-  <img [src]="product.imageURL" class="card-img-top" alt="Product Image" height="200">
+<div class="card " style=" margin: 10px;">
+  <img [src]="getImageUrl(product.imageURL1)"
+  class="card-img-top"
+  alt="Product Image"
+  height="200">
+
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <p class="card-text">Price: {{product.reservePrice}}</p>

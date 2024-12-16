@@ -50,9 +50,14 @@
   }
 }
 
-.nav-link.active {
+.active {
   font-weight: bold;
   color: #6c757d;
   background-color:gray;
   border-radius: 4px;
+}
+
+.nav-item.set
+{
+  color:red;
 }
