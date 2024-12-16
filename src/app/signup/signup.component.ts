@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { AuthServiceService } from './../login/auth-service.service';
 import { Component, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,20 +28,44 @@ export class SignupComponent {
 onFileSelected(event: any): void {
   this.selectedFile = event.target.files[0];
 }
+// Utility function to mark all form controls as touched
+private markFormGroupTouched(formGroup: FormGroup): void {
+  Object.values(formGroup.controls).forEach(control => {
+    if (control instanceof FormGroup) {
+      this.markFormGroupTouched(control); // Recursively mark nested form groups
+    } else {
+      control.markAsTouched(); // Mark control as touched
+    }
+  });
+}
 
-  onSubmit(): void {
-    console.log("data is",this.signupForm.value);
-    this.authService.signup(this.signupForm.value,this.selectedFile).subscribe({
+onSubmit(): void {
+  console.log("Form data is", this.signupForm.value);
+
+  if (this.signupForm.invalid) {
+    this.markFormGroupTouched(this.signupForm);
+    return;
+  }
+
+  if (this.signupForm.valid) {
+    this.authService.signup(this.signupForm.value, this.selectedFile).subscribe({
       next: (response: any) => {
         console.log('Signup successful', response);
         alert('Signup successful!');
       },
-      error: (err: any) => {
-        if(err.error=="Email already exists."){
-          this.isEmailExist=true;
-        }
+      error: (err:HttpErrorResponse) => {
+        console.error('Error details:', err);
 
+        // Check if the error response contains the message "Email already exists."
+        if (err.status === 400 && err.error && err.error.message === "Email already exists.") {
+          this.isEmailExist = true;
+          alert('Email already exists!');
+        } else {
+          console.error('An unexpected error occurred:', err);
+        }
       }
     });
   }
+}
+
 }

@@ -16,6 +16,10 @@
           placeholder="Enter Username"
           formControlName="Username"
         />
+        @if (signupForm.get('Username')?.touched && signupForm.get('Username')?.invalid) {
+
+          <p class="text-danger">Username is Required</p>
+        }
       </div>
       <div class="form-group mt-2">
         <input
@@ -25,6 +29,10 @@
           placeholder="Enter Email"
           formControlName="Email"
         />
+        @if (signupForm.get('Email')?.touched && signupForm.get('Email')?.invalid) {
+
+          <p class="text-danger">Email is Required</p>
+        }
       </div>
       <div class="form-group mt-2">
         <input
@@ -34,6 +42,10 @@
           placeholder="Password"
           formControlName="Password"
         />
+        @if (signupForm.get('Password')?.touched && signupForm.get('Password')?.invalid) {
+
+          <p class="text-danger">Password is Required</p>
+        }
       </div>
 <div class="form-control mt-2">
 
@@ -44,41 +56,45 @@
     formControlName="ImageURL"
     (change)="onFileSelected($event)"
   />
+  @if (signupForm.get('ImageURL')?.touched && signupForm.get('ImageURL')?.invalid) {
+
+    <p class="text-danger">Image is Required</p>
+  }
 </div>
 
-      <div class="d-flex p-2 col-12">
-        <!-- Seller Radio Button -->
-        <div class="form-check col-lg-4 col-sm-12">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="role"
-            id="flexRadioDefault2"
-            checked
-            formControlName="role"
-            value="Seller"
-          />
-          <label class="form-check-label" for="flexRadioDefault2">
-            Seller
-          </label>
-        </div>
+<div class="p-2 d-flex flex-wrap">
+  <!-- Seller Radio Button -->
+  <div class="form-check col-lg-6 col-sm-12">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="role"
+      id="flexRadioDefault2"
+      checked
+      formControlName="role"
+      value="Seller"
+    />
+    <label class="form-check-label" for="flexRadioDefault2">
+      Seller
+    </label>
+  </div>
 
-        <!-- Customer Radio Button -->
-        <div class="form-check col-lg-4 col-sm-12">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="role"
-            id="flexRadioDefault3"
-            formControlName="role"
+  <!-- Customer Radio Button -->
+  <div class="form-check col-lg-6 col-sm-12">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="role"
+      id="flexRadioDefault3"
+      formControlName="role"
+      value="Customer"
+    />
+    <label class="form-check-label" for="flexRadioDefault3">
+      Customer
+    </label>
+  </div>
+</div>
 
-            value="Customer"
-          />
-          <label class="form-check-label" for="flexRadioDefault3">
-            Customer
-          </label>
-        </div>
-      </div>
 
       <!-- Log In Button -->
       <div class="form-group">
