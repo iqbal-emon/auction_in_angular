@@ -1,19 +1,32 @@
+
+  <app-alert-modal 
+  [isVisible]="isModalVisible"
+  [title]="modalMessage"
+  (closeEvent)="closeModal()"
+></app-alert-modal>
+
+
+
+
 <div class="row mt-5">
 
 
   <div class="col-lg-6 col-md-12 col-sm-6" style="border:2px solid red">
-     <img src="./assets/tubnail.jpg" height="280" width="120" alt="" srcset="">
+    <div class="d-flex justify-content-center ">
+      <img [src]="getImageUrl(details.imageURL1 )" height="300"  alt="" srcset="">
+    </div>
 
     </div>
     <div class="col-lg-6 col-md-12 col-sm-6" style="border:2px solid green">
   <!-- Title Section -->
   <div class="row">
     <div class="col-12">
-      <h3 class="font-weight-bold">dfadfsa</h3>
+      <h3 class="font-weight-bold">{{details.title}}</h3>
       <span class="live-indicator">&#128308; Live</span>
-      <h2 class="mt-2">33</h2>
+      <h2 class="mt-2">{{details.reservePrice}}</h2>
       <p>You are a participant of this bidding.</p>
-      <span class="timer-badge">288h 9m 50s remaining</span>
+
+      <span class="bg-secondary px-1 fw-bold text-white rounded">288h 9m 50s remaining</span>
     </div>
   </div>
   <hr>
@@ -31,29 +44,33 @@
           </tr>
         </thead>
         <tbody>
+
+          @for(bid of biddingList;track bid){
           <tr>
-            <td>333.00</td>
-            <td>2024-12-09T21:57:01.153</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>100.00</td>
-            <td>2024-12-09T20:56:46.743</td>
-            <td>1</td>
-          </tr>
+              <td>{{bid.amount}}</td>
+              <td>{{bid.bidTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td>{{bid.customerID}}</td>
+            </tr>
+          }
+
         </tbody>
       </table>
     </div>
   </div>
 
   <!-- Bid Input Section -->
-  <div class="row mt-4">
-    <div class="col-12">
-      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">333.00</span></p>
-      <div class="form-inline">
-        <input type="number" class="form-control mr-2" placeholder="Enter Price" min="333.00" />
-        <button class="btn btn-dark submit-btn">SUBMIT</button>
-      </div>
+  <div class=" mt-4">
+      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">{{maxAmount}}</span></p>
+      <div class="row">
+        <div class="col-8">
+          <input type="number" [(ngModel)]="enterPrice" class="form-control" placeholder="Enter Price" min="333.00" />
+
+        </div>
+        <div class="col-2">
+
+          <button [disabled]="enterPrice<maxAmount ||enterPrice==null" (click)="AddBid()" class="btn btn-secondary">SUBMIT</button>
+        </div>
+
     </div>
   </div>
     </div>

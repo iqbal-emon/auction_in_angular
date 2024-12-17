@@ -12,4 +12,17 @@ export class ProductsService {
   products(): Observable<any> {
     return this.http.get(this.apiUrl+"product");
   }
+  productsDetails(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}product/${id}`);
+  }
+
+
+  biddingList(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}api/Bidding/getBidByItemId/${id}`);
+  }
+
+  AddBidding(formData:any): Observable<any> {
+    return this.http.post(`${this.apiUrl}api/Bidding/createBid`,formData);
+  }
+
 }

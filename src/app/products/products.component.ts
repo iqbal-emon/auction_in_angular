@@ -22,10 +22,10 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getAllProduct();
+    this.Load();
   }
 
-  getAllProduct() {
+  Load() {
     this.productService.products().subscribe({
       next: (response) => {
         this.products=response;
