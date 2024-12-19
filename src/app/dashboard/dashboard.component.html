@@ -21,22 +21,22 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link fs-5 text-white " routerLink="/dashboard" routerLinkActive="set" >
+            <a class="nav-link fs-5 text-white " routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
               Dashboard
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link fs-5 text-white " routerLink="/dashboard/orders" routerLinkActive="set">
+            <a class="nav-link fs-5 text-white " routerLink="/dashboard/orders" routerLinkActive="active">
               Orders
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 text-white" routerLink="/dashboard/products" routerLinkActive="select">
+            <a class="nav-link fs-5 text-white" routerLink="/dashboard/products" routerLinkActive="active">
               Products
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 text-white" routerLink="/customers">
+            <a class="nav-link fs-5 text-white" routerLink="/customers" routerLinkActive="active">
               Customers
             </a>
           </li>

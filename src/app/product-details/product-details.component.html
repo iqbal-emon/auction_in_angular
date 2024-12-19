@@ -1,5 +1,5 @@
 
-  <app-alert-modal 
+  <app-alert-modal
   [isVisible]="isModalVisible"
   [title]="modalMessage"
   (closeEvent)="closeModal()"
@@ -60,14 +60,13 @@
 
   <!-- Bid Input Section -->
   <div class=" mt-4">
-      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">{{maxAmount}}</span></p>
+      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">{{maxAmount ? maxAmount :details.reservePrice}}</span></p>
       <div class="row">
         <div class="col-8">
           <input type="number" [(ngModel)]="enterPrice" class="form-control" placeholder="Enter Price" min="333.00" />
 
         </div>
         <div class="col-2">
-
           <button [disabled]="enterPrice<maxAmount ||enterPrice==null" (click)="AddBid()" class="btn btn-secondary">SUBMIT</button>
         </div>
 
@@ -78,3 +77,4 @@
 
 
 </div>
+ 

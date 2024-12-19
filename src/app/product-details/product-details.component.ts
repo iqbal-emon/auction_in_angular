@@ -85,13 +85,13 @@ export class ProductDetailsComponent {
 
     this.productService.AddBidding(formData).subscribe({
       next: (response) => {
-        console.log('reponse it coming');
+        console.log('reponse it coming',response);
         this.modalMessage=response;
         this.BiddingList(this.itemId);
         this.openModal();
 
         this.enterPrice=0;
-       
+
       },
       error: (error) => {
         this.openModal();
