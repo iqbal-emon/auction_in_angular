@@ -1,29 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {
-  RouterOutlet,
-  RouterLink,
-  RouterModule,
-  Router,
-} from '@angular/router';
-import { OrdersComponent } from './orders/orders.component';
+import { Router, RouterModule, RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, RouterOutlet, RouterLink,RouterModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
   isSidebarOpen = false;
-  isOrdersActive: any;
+
   constructor(private router: Router) {
     // Subscribe to router events to track route changes
     this.router.events.subscribe(() => {
       console.log('Current Route:', this.router.url);
     });
   }
+
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }

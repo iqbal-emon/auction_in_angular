@@ -19,7 +19,9 @@ export class ProductsComponent implements OnInit {
 
   }
 
-
+  trackByProduct(index: number, product: any): number {
+    return product.id;
+  }
 
   ngOnInit() {
     this.Load();

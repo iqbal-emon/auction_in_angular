@@ -6,33 +6,42 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
   },
+
   {
-    path:'dashboard',
-    component:DashboardComponent,
-    children:[
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
       {
-        path:'orders',
-        component:OrdersComponent
+        path: 'add-product',
+        component: AddProductComponent,
       },
       {
-        path:'products',
-        component:ProductsComponent,
-
-      }
-      , {
-        path:'products/:itemId',
-        component:ProductDetailsComponent
-      }
-    ]
-  }
+        path: 'orders',
+        component: OrdersComponent,
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+      },
+      {
+        path: 'products/:itemId',
+        component: ProductDetailsComponent,
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

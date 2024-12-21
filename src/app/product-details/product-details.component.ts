@@ -22,7 +22,8 @@ export class ProductDetailsComponent {
   maxAmount:any;
   modalStatus:boolean=false;
   modalMessage:string=''
-
+new: any;
+currentDate: Date = new Date();
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService
@@ -40,7 +41,11 @@ export class ProductDetailsComponent {
     });
   }
   isModalVisible = false;
-
+  isExpired(): boolean {
+    if (!this.details.endTime) return false; // Handle empty/null endTime
+    const endTime = new Date(this.details.endTime); // Convert to Date object
+    return endTime > this.currentDate;
+  }
   openModal() {
     this.isModalVisible = true;
     console.log("moda is",this.isModalVisible);
@@ -84,9 +89,9 @@ export class ProductDetailsComponent {
     };
 
     this.productService.AddBidding(formData).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         console.log('reponse it coming',response);
-        this.modalMessage=response;
+        this.modalMessage=response.message;
         this.BiddingList(this.itemId);
         this.openModal();
 
@@ -95,7 +100,7 @@ export class ProductDetailsComponent {
       },
       error: (error) => {
         this.openModal();
-        this.modalMessage=error.error;
+        this.modalMessage=error.error.message;
         console.error('Error fetching products:', error);
       },
     });

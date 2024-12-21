@@ -1,0 +1,104 @@
+
+@if(addModalShow){
+<div class="modal fade show d-block" id="addUpdateModal" tabindex="-1" aria-labelledby="addUpdateModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog  modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUpdateModalLabel">{{itemId?"Edit Product": "Add Product"}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="product-title">Product Title</label>
+            <input type="text" class="form-control" id="product-title" placeholder="Enter Product Title"
+              formControlName="productTitle" />
+            @if(productForm.get('productTitle')?.touched && productForm.get('productTitle')?.invalid){
+            <p class="text-danger">Product Title is Required</p>
+            }
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" formControlName="category">
+              <option value="" disabled>Select Category</option>
+              @for(category of categories;track category){
+              <option [value]="category.name">{{ category.name}}</option>
+              }
+            </select>
+            @if(productForm.get('category')?.touched && productForm.get('category')?.invalid){
+            <p class="text-danger">Category is Required</p>
+            }
+          </div>
+
+          <div class="form-group mt-2">
+            <label for="product-price">Product Price</label>
+            <input type="number" class="form-control" id="product-price" placeholder="Enter Product Price"
+              formControlName="productPrice" />
+            @if(productForm.get('productPrice')?.touched && productForm.get('productPrice')?.invalid){
+            <p class="text-danger">Product Price is Required</p>
+            }
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="product-description">Description</label>
+            <textarea class="form-control" id="product-description" placeholder="Enter Product Description"
+              formControlName="description"></textarea>
+            @if( productForm.get('description')?.touched && productForm.get('description')?.invalid){
+            <p class="text-danger">Description is Required</p>
+            }
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="image1">Image 1</label>
+            <input class="form-control" type="file" id="image1" formControlName="image1" (change)="onFileSelected1($event)" />
+            @if(productForm.get('image1')?.touched && productForm.get('image1')?.invalid){
+            <p class="text-danger">Image 1 is Required</p>
+            }
+
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="image2">Image 2</label>
+            <input class="form-control" type="file" id="image2" formControlName="image2" (change)="onFileSelected2($event)" />
+            @if(productForm.get('image2')?.touched && productForm.get('image2')?.invalid){
+            <p class="text-danger">Image 2 is Required</p>
+            }
+          </div>
+          <div class="form-group mt-2">
+            <label for="image3">Image 3</label>
+            <input class="form-control" type="file" id="image3" formControlName="image3" (change)="onFileSelected3($event)" />
+            @if(productForm.get('image3')?.touched && productForm.get('image3')?.invalid){
+            <p class="text-danger">Image 3 is Required</p>
+            }
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="auction-start">Auction Start Date and Time</label>
+            <input type="datetime-local" class="form-control" id="auction-start" formControlName="auctionStart" />
+            @if(productForm.get('auctionStart')?.touched && productForm.get('auctionStart')?.invalid){
+            <p class="text-danger">Auction Start Date and Time is Required</p>
+            }
+
+
+          </div>
+          <div class="form-group mt-2">
+            <label for="auction-end">Auction End Date and Time</label>
+            <input type="datetime-local" class="form-control" id="auction-end" formControlName="auctionEnd" />
+            @if(productForm.get('auctionEnd')?.touched && productForm.get('auctionEnd')?.invalid){
+            <p class="text-danger">Auction End Date and Time is Required</p>
+            }
+
+          </div>
+          <div class="form-group mt-4">
+            <button type="submit" class="form-control btn btn-secondary">{{itemId?"Update Product": "Add
+              Product"}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+}
