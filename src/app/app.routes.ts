@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { SellerStatusComponent } from './seller-status/seller-status.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +40,14 @@ export const routes: Routes = [
         path: 'products/:itemId',
         component: ProductDetailsComponent,
       },
+      {
+        path: 'seller-status',
+        component: SellerStatusComponent,
+      },
+      {
+        path: 'customer-status',
+        component:CustomerListComponent
+      }
     ],
   },
   {
