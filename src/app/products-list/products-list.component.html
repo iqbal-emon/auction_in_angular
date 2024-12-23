@@ -1,0 +1,45 @@
+<app-alert-modal [isVisible]="isModalVisible" [title]="modalMessage" (closeEvent)="closeAlert()"></app-alert-modal>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Reserve Price</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Image</th>
+      <th scope="col">Action</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    @for(product of productList; track product){
+    <tr >
+      <td>{{product.title}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.category}}</td>
+      <td>{{product.reservePrice}}</td>
+      <td>{{product.startTime}}</td>
+      <td>{{product.endTime}}</td>
+      <td><img [src]="getImageUrl(product.imageURL1)" height="60" width="30" class="img-fluid"></td>
+      <td class="">
+      <button class="btn mx-2" [ngClass]="{'btn-danger': product.flag == 1, 'btn-secondary': product.flag != 1}"
+        (click)="updateStatus(product)">
+        {{ product.flag == 1 ? "Block" : "Unblock" }}
+      </button>
+
+    </tr>
+    }
+
+
+  </tbody>
+</table>
+
+
+
+
+

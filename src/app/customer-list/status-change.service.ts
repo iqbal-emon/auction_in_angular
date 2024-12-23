@@ -2,29 +2,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Env } from '../../environments/env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatusChangeService {
-  apiUrl = 'https://localhost:7189/api/SellerStatus/';
-  userUrl = "";
+  private apiUrl = Env.baseUrl ;
+  userUrl = '';
   constructor(private http: HttpClient) {}
-  getUsers(user:any):Observable<any> {
-    if (user == "seller") {
-      this.userUrl = "Seller-list";
-
-     
+  getUsers(user: any): Observable<any> {
+    if (user == 'seller') {
+      this.userUrl = 'Seller-list';
+    } else if (user == 'customer') {
+      this.userUrl = 'Customer-list';
     }
-    else if (user == "customer") {
-       this.userUrl = 'Customer-list';
-    }
-    return this.http.get(this.apiUrl + this.userUrl);
+    console.log(this.apiUrl + this.userUrl);
+    return this.http.get(this.apiUrl +"api/SellerStatus/"+ this.userUrl);
   }
 
+  getAllProducts(): Observable<any> {
 
+    return this.http.get(this.apiUrl + "api/product/product-list");
+  }
 
-  updateStatus(userRole: any, userId: any,flag:any):Observable<any> {
-    return this.http.put(this.apiUrl+"blockseller/" + userRole + '/'+userId+'/' + flag,null);
+  updateStatus(userRole: any, userId: any, flag: any): Observable<any> {
+    return this.http.put(
+      this.apiUrl +
+        'api/SellerStatus/blockseller/' +
+        userRole +
+        '/' +
+        userId +
+        '/' +
+        flag,
+      null
+    );
   }
 }

@@ -2,6 +2,7 @@ import { AddProductService } from './add-product.service';
 import { Component, OnInit } from '@angular/core';
 import { AddUpdateModalComponent } from '../add-update-modal/add-update-modal.component';
 import { AlertModalComponent } from '../alert-modal/alert-modal.component';
+import { Env } from '../../environments/env';
 
 @Component({
   selector: 'app-add-product',
@@ -66,7 +67,7 @@ export class AddProductComponent implements OnInit {
     return localPath
       .replace(
         'C:\\auctionBackend\\Images\\Uploads',
-        'https://localhost:7189/images/Uploads'
+        Env.baseUrl+'images/Uploads'
       )
       .replace(/\\/g, '/');
   }

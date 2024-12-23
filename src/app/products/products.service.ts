@@ -1,28 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Env } from '../../environments/env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
   constructor(private http: HttpClient) {}
-  private apiUrl = 'https://localhost:7189/'; // Replace with your actual API endpoint
+  private apiUrl = Env.baseUrl ;
 
   products(): Observable<any> {
-    return this.http.get(this.apiUrl+"product");
+    return this.http.get(this.apiUrl + 'api/Product/activeProduct');
   }
   productsDetails(id: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}product/${id}`);
+    https: return this.http.get(`${this.apiUrl}api/Product/GetProductByItemId/${id}`);
   }
-
 
   biddingList(id: any): Observable<any> {
     return this.http.get(`${this.apiUrl}api/Bidding/getBidByItemId/${id}`);
   }
 
-  AddBidding(formData:any): Observable<any> {
-    return this.http.post(`${this.apiUrl}api/Bidding/createBid`,formData);
+  AddBidding(formData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}api/Bidding/createBid`, formData);
   }
-
 }

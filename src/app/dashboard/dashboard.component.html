@@ -20,31 +20,51 @@
               Dashboard
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link fs-5 text-white " routerLink="/dashboard/orders" routerLinkActive="active">
-              Orders
-            </a>
-          </li>
+
+          @if(userRole == 'Customer'){
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/products" routerLinkActive="active">
               Products
             </a>
           </li>
+          }
+          @if(userRole == 'Admin'){
+
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/seller-status" routerLinkActive="active">
-              Seller-Status
+              Seller-List
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/customer-status" routerLinkActive="active">
-              Customer-Status
+              Customer-List
             </a>
           </li>
+          }
+          @if(userRole=="Seller"){
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/add-product" routerLinkActive="active">
               Add Product
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5 text-white" routerLink="/dashboard/product-status" routerLinkActive="active">
+              Product-List
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link fs-5 text-white " routerLink="/dashboard/orders" routerLinkActive="active">
+              Orders
+            </a>
+          </li>
+          }
+
+          <li class="nav-item">
+            <a class="nav-link fs-5 text-white" (click)="logOut()" routerLinkActive="active">
+              Logout
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>

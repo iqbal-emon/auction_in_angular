@@ -6,10 +6,11 @@ import { DatePipe } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AlertModalComponent } from '../alert-modal/alert-modal.component';
 import { SignupComponent } from '../signup/signup.component';
+import { Env } from '../../environments/env';
 
 @Component({
   selector: 'app-product-details',
-  imports: [DatePipe, FormsModule,AlertModalComponent],
+  imports: [DatePipe, FormsModule, AlertModalComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -19,11 +20,11 @@ export class ProductDetailsComponent {
   enterPrice: any;
   biddingList: any[] = [];
   customerID: any | undefined;
-  maxAmount:any;
-  modalStatus:boolean=false;
-  modalMessage:string=''
-new: any;
-currentDate: Date = new Date();
+  maxAmount: any;
+  modalStatus: boolean = false;
+  modalMessage: string = '';
+  new: any;
+  currentDate: Date = new Date();
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService
@@ -48,14 +49,13 @@ currentDate: Date = new Date();
   }
   openModal() {
     this.isModalVisible = true;
-    console.log("moda is",this.isModalVisible);
+    console.log('moda is', this.isModalVisible);
   }
 
   closeModal() {
     this.isModalVisible = false;
   }
   Load(id: any) {
-
     this.productService.productsDetails(id).subscribe({
       next: (response) => {
         this.details = response;
@@ -70,9 +70,9 @@ currentDate: Date = new Date();
   BiddingList(id: any) {
     this.productService.biddingList(id).subscribe({
       next: (response) => {
-        console.log("response is",response);
+        console.log('response is', response);
         this.biddingList = response.bids;
-        this.maxAmount=response.maxAmount;
+        this.maxAmount = response.maxAmount;
         console.log('bidding list', this.biddingList);
       },
       error: (error) => {
@@ -89,18 +89,17 @@ currentDate: Date = new Date();
     };
 
     this.productService.AddBidding(formData).subscribe({
-      next: (response:any) => {
-        console.log('reponse it coming',response);
-        this.modalMessage=response.message;
+      next: (response: any) => {
+        console.log('reponse it coming', response);
+        this.modalMessage = response.message;
         this.BiddingList(this.itemId);
         this.openModal();
 
-        this.enterPrice=0;
-
+        this.enterPrice = 0;
       },
       error: (error) => {
         this.openModal();
-        this.modalMessage=error.error.message;
+        this.modalMessage = error.error.message;
         console.error('Error fetching products:', error);
       },
     });
@@ -109,8 +108,8 @@ currentDate: Date = new Date();
   getImageUrl(localPath: string): string {
     return localPath
       .replace(
-        'D:\\auctionBackend\\Images\\Uploads',
-        'https://localhost:7189/images/Uploads'
+        'C:\\auctionBackend\\Images\\Uploads',
+        Env.baseUrl + '/images/Uploads'
       )
       .replace(/\\/g, '/');
   }

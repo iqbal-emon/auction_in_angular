@@ -17,7 +17,7 @@
       <td>{{seller.email}}</td>
       <td><img [src]="getImageUrl(seller.imageURL)" height="60" width="30" class="img-fluid"></td>
       <td class="">
-        <button class="btn mx-2" [ngClass]="{'btn-danger': seller.flag == 1, 'btn-success': seller.flag != 1}"
+        <button class="btn mx-2" [ngClass]="{'btn-danger': seller.flag == 1, 'btn-secondary': seller.flag != 1}"
           (click)="updateStatus(seller)">
           {{ seller.flag == 1 ? "Block" : "Unblock" }}
         </button>

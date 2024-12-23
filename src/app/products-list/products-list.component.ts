@@ -1,23 +1,23 @@
-import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StatusChangeService } from '../customer-list/status-change.service';
-import { AlertModalComponent } from "../alert-modal/alert-modal.component";
+import { NgClass } from '@angular/common';
 import { Env } from '../../environments/env';
+import { AlertModalComponent } from "../alert-modal/alert-modal.component";
 
 @Component({
-  selector: 'app-seller-status',
+  selector: 'app-products-list',
   imports: [NgClass, AlertModalComponent],
-  templateUrl: './seller-status.component.html',
-  styleUrl: './seller-status.component.css',
+  templateUrl: './products-list.component.html',
+  styleUrl: './products-list.component.css'
 })
-export class SellerStatusComponent {
-  sellerList: any[] = [];
+export class ProductsListComponent {
+productList: any[] = [];
   modalMessage: string = '';
   isModalVisible: boolean = false;
   constructor(private statusChangeService: StatusChangeService) {}
-  updateStatus(seller: any) {
+  updateStatus(product: any) {
     this.statusChangeService
-      .updateStatus('seller', seller.userID, seller.flag == '1' ? '0' : '1')
+      .updateStatus('product', product.itemID, product.flag == '1' ? '0' : '1')
       .subscribe({
         next: (response) => {
           this.modalMessage = response.message;
@@ -37,9 +37,9 @@ export class SellerStatusComponent {
     this.isModalVisible = false;
   }
   Load() {
-    this.statusChangeService.getUsers('seller').subscribe({
+    this.statusChangeService.getAllProducts().subscribe({
       next: (response) => {
-        this.sellerList = response;
+        this.productList = response;
       },
       error: (error) => {
         console.error('Error fetching products:', error);

@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { AddProductComponent } from './add-product/add-product.component';
 import { SellerStatusComponent } from './seller-status/seller-status.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,9 @@ export const routes: Routes = [
       {
         path: 'customer-status',
         component:CustomerListComponent
+      }, {
+        path: 'product-status',
+        component:ProductsListComponent
       }
     ],
   },
