@@ -28,8 +28,7 @@ import { AlertModalComponent } from '../alert-modal/alert-modal.component';
   imports: [
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
-    AlertModalComponent,
+    FormsModule
   ],
 })
 export class AddUpdateModalComponent implements OnChanges, OnInit {

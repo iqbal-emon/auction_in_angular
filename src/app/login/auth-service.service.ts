@@ -19,18 +19,25 @@ export class AuthServiceService {
     formDataObject.append('ImageURL', files); // Ensure ImageURL is appended
     formDataObject.append('role', formData.role);
 
-    return this.http.post(this.apiUrl+"SignUp", formDataObject);
+    return this.http.post(this.apiUrl + 'SignUp', formDataObject);
   }
-
 
   signin(data: any): Observable<any> {
     const params = new HttpParams()
       .set('email', data.Email)
       .set('password', data.Password)
-      .set('role',data.role);
+      .set('role', data.role);
 
-
-    return this.http.get(this.apiUrl+'AuctionSystemLogIn', { params });
+    return this.http.get(this.apiUrl + 'AuctionSystemLogIn', { params });
   }
 
+  isLoggedIn(): boolean {
+    const userId = localStorage.getItem('userId');
+    const role = localStorage.getItem('userRole');
+    return !!userId && !!role;
+  }
+  hasRole(requiredRole: string): boolean {
+    const role = localStorage.getItem('userRole'); // Retrieve the user's role from localStorage
+    return role === requiredRole;
+  }
 }

@@ -10,6 +10,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { SellerStatusComponent } from './seller-status/seller-status.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { AuthGuard } from './login/auth-guard';
+import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 
 export const routes: Routes = [
   {
@@ -24,35 +26,55 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'add-product',
         component: AddProductComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Seller' },
       },
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Seller' },
       },
       {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Customer' },
       },
       {
         path: 'products/:itemId',
         component: ProductDetailsComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Customer' },
       },
       {
         path: 'seller-status',
         component: SellerStatusComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Admin' },
       },
       {
         path: 'customer-status',
-        component:CustomerListComponent
-      }, {
+        component: CustomerListComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Admin' },
+      },
+      {
         path: 'product-status',
-        component:ProductsListComponent
-      }
+        component: ProductsListComponent,
+        canActivate: [AuthGuard],
+        data: { role: 'Admin' },
+      },
     ],
+  },
+  {
+    path: 'unauthorized',
+    component: UnAuthorizedComponent,
   },
   {
     path: '**',

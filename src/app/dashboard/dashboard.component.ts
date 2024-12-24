@@ -19,19 +19,20 @@ export class DashboardComponent {
   isSidebarOpen = false;
   isOrdersActive: any;
   userRole: any = localStorage.getItem('userRole');
-  
-  constructor(private router: Router) {
-    // Subscribe to router events to track route changes
-    this.router.events.subscribe(() => {
-      console.log('Current Route:', this.router.url);
-    });
-  }
+
+  constructor(private router: Router) {}
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
   logOut() {
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(() => {
+      // Replace the current history state to prevent back navigation
+    window.history.replaceState(null, '', '/login');
+    
+    // Reload the page
+    window.location.reload();
+    });
   }
 }
