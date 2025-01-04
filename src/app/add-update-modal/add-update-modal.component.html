@@ -24,6 +24,7 @@
             <label for="category">Category</label>
             <select class="form-control" id="category" formControlName="category">
               <option value="" disabled>Select Category</option>
+              <option value="test">test</option>
               @for(category of categories;track category){
               <option [value]="category.name">{{ category.name}}</option>
               }

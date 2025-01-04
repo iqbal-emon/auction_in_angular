@@ -11,7 +11,8 @@ export class ProductsService {
   private apiUrl = Env.baseUrl ;
 
   products(): Observable<any> {
-    return this.http.get(this.apiUrl + 'api/Product/activeProduct');
+    console.log("apiUrl",this.apiUrl);
+    return this.http.get(this.apiUrl + 'api/items/activeProduct');
   }
   productsDetails(id: any): Observable<any> {
     https: return this.http.get(`${this.apiUrl}api/Product/GetProductByItemId/${id}`);

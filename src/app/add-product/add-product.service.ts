@@ -11,9 +11,9 @@ export class AddProductService {
   constructor(private http: HttpClient) {}
   private apiUrl = Env.baseUrl;
   AddProduct(formData: any): Observable<any> {
-    alert('form is');
+    // alert('form is');
     console.log('form is', formData);
-    return this.http.post(this.apiUrl + 'api/Product/InsertProduct', formData);
+    return this.http.post(this.apiUrl + 'api/Items/add-product', formData);
   }
 
   updateProduct(formData: any, itemId: any): Observable<any> {

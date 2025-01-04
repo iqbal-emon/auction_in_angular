@@ -30,7 +30,7 @@ export class LoginComponent {
     this.signinForm = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required, Validators.minLength(4)]],
-      role: ['Admin', Validators.required],
+      role: ['admin', Validators.required],
     });
   }
 
@@ -38,10 +38,10 @@ export class LoginComponent {
     if (this.signinForm.valid) {
       this.authService.signin(this.signinForm.value).subscribe({
         next: (response: any) => {
-          // console.log("userId is",JSON.stringify(response));
-          localStorage.setItem('userId', response.userID);
+          console.log('userId is', JSON.stringify(response));
+          localStorage.setItem('userId', response.userId);
           localStorage.setItem('userRole', response.role);
-
+          this.authService.storeTokens(response.token);
           this.router.navigate(['/dashboard']); // Example redirect after login success
         },
         error: (err) => {
@@ -52,5 +52,18 @@ export class LoginComponent {
       // Optionally handle invalid form case here
       console.log('Form is invalid');
     }
+  }
+  storeTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+  }
+  // Get the access token
+  getAccessToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+
+  // Get the refresh token
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refreshToken');
   }
 }

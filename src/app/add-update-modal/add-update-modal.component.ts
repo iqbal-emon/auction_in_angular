@@ -150,13 +150,13 @@ export class AddUpdateModalComponent implements OnChanges, OnInit {
 
     // Append files if selected
     if (this.selectedFile1) {
-      formDataObject.append('imageURL1', this.selectedFile1);
+      formDataObject.append('imageURL', this.selectedFile1);
     }
     if (this.selectedFile2) {
-      formDataObject.append('imageURL2', this.selectedFile2);
+      formDataObject.append('imageURL1', this.selectedFile2);
     }
     if (this.selectedFile3) {
-      formDataObject.append('imageURL3', this.selectedFile3);
+      formDataObject.append('imageURL2', this.selectedFile3);
     }
 
     console.log('FormData submitted:', formDataObject);

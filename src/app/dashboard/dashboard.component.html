@@ -21,14 +21,14 @@
             </a>
           </li>
 
-          @if(userRole == 'Customer'){
+          @if(userRole == 'buyer'){
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/products" routerLinkActive="active">
               Products
             </a>
           </li>
           }
-          @if(userRole == 'Admin'){
+          @if(userRole == 'admin'){
 
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/seller-status" routerLinkActive="active">
@@ -41,7 +41,7 @@
             </a>
           </li>
           }
-          @if(userRole=="Seller"){
+          @if(userRole=="seller"){
           <li class="nav-item">
             <a class="nav-link fs-5 text-white" routerLink="/dashboard/add-product" routerLinkActive="active">
               Add Product
