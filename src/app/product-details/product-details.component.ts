@@ -45,8 +45,8 @@ export class ProductDetailsComponent {
   }
   isModalVisible = false;
   isExpired(): boolean {
-    if (!this.details.endTime) return false; // Handle empty/null endTime
-    const endTime = new Date(this.details.endTime); // Convert to Date object
+    if (!this.details.endTime) return false;
+    const endTime = new Date(this.details.endTime);
     return endTime > this.currentDate;
   }
   openModal() {

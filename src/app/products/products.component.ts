@@ -36,6 +36,7 @@ export class ProductsComponent implements OnInit {
     this.productService.products().subscribe({
       next: (response) => {
         this.products = response;
+        console.log(this.products);
       },
       error: (error) => {
         console.error('Error fetching products:', error);

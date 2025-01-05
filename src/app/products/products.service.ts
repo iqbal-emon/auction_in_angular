@@ -11,10 +11,10 @@ export class ProductsService {
   private apiUrl = Env.baseUrl ;
 
   products(): Observable<any> {
-    return this.http.get(this.apiUrl + 'api/items/activeProduct');
+    return this.http.get(this.apiUrl + 'api/items/activeProduct/0');
   }
   productsDetails(id: any): Observable<any> {
-    https: return this.http.get(`${this.apiUrl}api/Items/activeProduct/${id}`);
+    https: return this.http.get(`${this.apiUrl}api/Items/biddingList/${id}`);
   }
 
   biddingList(id: any): Observable<any> {

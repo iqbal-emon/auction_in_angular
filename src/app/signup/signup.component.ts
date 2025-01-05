@@ -21,7 +21,7 @@ export class SignupComponent {
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
       ImageURL:[null,Validators.required],
-      role:['Seller',Validators.required]
+      role:['seller',Validators.required]
     });
   }
 // Handle file selection
@@ -54,7 +54,7 @@ onSubmit(): void {
         alert('Signup successful!');
       },
       error: (err:HttpErrorResponse) => {
-       
+
 
         // Check if the error response contains the message "Email already exists."
         if (err.status === 400 && err.error && err.error.message === "Email already exists.") {

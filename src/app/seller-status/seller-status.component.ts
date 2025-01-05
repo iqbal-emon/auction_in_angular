@@ -17,7 +17,7 @@ export class SellerStatusComponent {
   constructor(private statusChangeService: StatusChangeService) {}
   updateStatus(seller: any) {
     this.statusChangeService
-      .updateStatus('seller', seller.userID, seller.flag == '1' ? '0' : '1')
+      .updateStatus('seller', seller.userId, seller.flag == '1' ? '0' : '1')
       .subscribe({
         next: (response) => {
           this.modalMessage = response.message;

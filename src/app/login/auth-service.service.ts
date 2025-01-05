@@ -19,7 +19,7 @@ export class AuthServiceService {
     formDataObject.append('ImageURL', files); // Ensure ImageURL is appended
     formDataObject.append('role', formData.role);
 
-    return this.http.post(this.apiUrl + 'SignUp', formDataObject);
+    return this.http.post(this.apiUrl + 'sign-up', formDataObject);
   }
 
   signin(data: any): Observable<any> {

@@ -22,10 +22,10 @@ export class CustomerListComponent implements OnInit {
     this.isModalVisible = false;
   }
   Load() {
-    this.statusChangeService.getUsers('customer').subscribe({
+    this.statusChangeService.getUsers('buyer').subscribe({
       next: (response) => {
         this.customerList = response;
-        console.log(this.customerList);
+        console.log("customer list is",this.customerList);
       },
       error: (error) => {
         console.error('Error fetching products:', error);
@@ -37,8 +37,8 @@ export class CustomerListComponent implements OnInit {
     console.log('customer is', customer);
     this.statusChangeService
       .updateStatus(
-        'customer',
-        customer.customerID,
+        'buyer',
+        customer.userId,
         customer.flag == '1' ? '0' : '1'
       )
       .subscribe({

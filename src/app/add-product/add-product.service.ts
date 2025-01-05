@@ -18,21 +18,19 @@ export class AddProductService {
 
   updateProduct(formData: any, itemId: any): Observable<any> {
     return this.http.put(
-      this.apiUrl + `api/Product/UpdateProduct/${itemId}`,
+      this.apiUrl + `api/items/update-products/${itemId}`,
       formData
     ); // Ensure the correct API endpoint is used
   }
   getProduct(): Observable<any> {
     return this.http.get(
-      `${this.apiUrl}api/Product/GetProductsByUserId/${this.userId}`
+      `${this.apiUrl}api/Items/activeProduct/${this.userId}`
     );
   }
   getProductById(itemId: any): Observable<any> {
-    return this.http.get(
-      `${this.apiUrl}api/Product/GetProductByItemId/${itemId}`
-    );
+    return this.http.get(`${this.apiUrl}api/items/biddingList/${itemId}`);
   }
   getCategories(): Observable<any> {
-    return this.http.get(`${this.apiUrl}api/Category/GetCategories`);
+    return this.http.get(`${this.apiUrl}api/Category/getcategories`);
   }
 }

@@ -41,7 +41,7 @@ export class AddUpdateModalComponent implements OnChanges, OnInit {
   @Output() eventEmitter = new EventEmitter<any>();
   @Output() closeModalEvent = new EventEmitter<any>();
   @Input() itemId: any = null;
-  categories: any = [];
+  categories: any[] = [];
   userId: any = localStorage.getItem('userId');
 
   formDataObject: any;

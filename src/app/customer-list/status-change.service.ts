@@ -13,12 +13,12 @@ export class StatusChangeService {
   constructor(private http: HttpClient) {}
   getUsers(user: any): Observable<any> {
     if (user == 'seller') {
-      this.userUrl = 'Seller-list';
-    } else if (user == 'customer') {
-      this.userUrl = 'Customer-list';
+      this.userUrl = 'seller';
+    } else if (user == 'buyer') {
+      this.userUrl = 'buyer';
     }
     console.log(this.apiUrl + this.userUrl);
-    return this.http.get(this.apiUrl +"api/SellerStatus/"+ this.userUrl);
+    return this.http.get(this.apiUrl+'api/Status/getstatus/'+this.userUrl);
   }
 
   getAllProducts(): Observable<any> {
@@ -29,7 +29,7 @@ export class StatusChangeService {
   updateStatus(userRole: any, userId: any, flag: any): Observable<any> {
     return this.http.put(
       this.apiUrl +
-        'api/SellerStatus/blockseller/' +
+        'api/Status/blockseller/' +
         userRole +
         '/' +
         userId +
