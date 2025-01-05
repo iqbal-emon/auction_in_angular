@@ -26,24 +26,19 @@ export class ProductsComponent implements OnInit {
     this.Load();
     this.signalRService.startConnection();
 
-    // Subscribe to the new product updates from SignalR
     this.signalRService.getNewProduct().subscribe((newProduct: any) => {
-      console.log('New product received:', newProduct);
       this.products.push(newProduct);
     });
 
-    // Load the products from the API
   }
 
-  // Load initial products and fetch from the product service
   Load(): void {
     this.productService.products().subscribe({
       next: (response) => {
         this.products = response;
-        console.log(this.products); // You can remove this log in production
       },
       error: (error) => {
-        console.error('Error fetching products:', error); // Handle any errors here
+        console.error('Error fetching products:', error);
       },
     });
   }

@@ -1,3 +1,4 @@
+import { SignalRService } from './../add-product/signal-r.service';
 import { ProductsService } from './../products/products.service';
 import { routes } from './../app.routes';
 import { Component, NgModule } from '@angular/core';
@@ -17,7 +18,7 @@ import { Env } from '../../environments/env';
 export class ProductDetailsComponent {
   itemId!: any;
   details: any;
-  enterPrice: any;
+  enterPrice: number = 0;
   biddingList: any[] = [];
   customerID: any | undefined;
   maxAmount: any;
@@ -27,7 +28,8 @@ export class ProductDetailsComponent {
   currentDate: Date = new Date();
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private signalRService: SignalRService
   ) {}
   ngOnInit() {
     this.customerID = Number(localStorage.getItem('userId'));
@@ -56,6 +58,12 @@ export class ProductDetailsComponent {
     this.isModalVisible = false;
   }
   Load(id: any) {
+    this.signalRService.startConnection();
+
+    this.signalRService.getNewBid().subscribe((newBid: any) => {
+      this.biddingList.push(newBid);
+    });
+
     this.productService.productsDetails(id).subscribe({
       next: (response) => {
         this.details = response;
@@ -72,8 +80,8 @@ export class ProductDetailsComponent {
       next: (response) => {
         console.log('response is', response);
         this.biddingList = response.bids;
-        this.maxAmount = response.maxAmount;
-        console.log('bidding list', this.biddingList);
+        this.maxAmount = response.maxBidAmount;
+        console.log('bidding list', this.maxAmount);
       },
       error: (error) => {
         console.error('Error fetching products:', error);

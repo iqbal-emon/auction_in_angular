@@ -1,9 +1,4 @@
-
-  <app-alert-modal
-  [isVisible]="isModalVisible"
-  [title]="modalMessage"
-  (closeEvent)="closeModal()"
-></app-alert-modal>
+<app-alert-modal [isVisible]="isModalVisible" [title]="modalMessage" (closeEvent)="closeModal()"></app-alert-modal>
 
 
 
@@ -11,76 +6,76 @@
 <div class="row mt-5 shadow-lg p-3 rounded">
 
 
-  <div class="col-lg-6 col-md-12 col-sm-6" >
+  <div class="col-lg-6 col-md-12 col-sm-6">
     <div class="d-flex justify-content-center ">
-      <img [src]="getImageUrl(details.imageURL1 )" height="300"  alt="" srcset="">
+      <img [src]="getImageUrl(details.imageURL1 )" height="300" alt="" srcset="">
     </div>
 
-    </div>
-    <div class="col-lg-6 col-md-12 col-sm-6" >
-  <!-- Title Section -->
-  <div class="row">
-    <div class="col-12">
-      <h3 class="font-weight-bold">{{details.title}}</h3>
-      @if(isExpired()){
+  </div>
+  <div class="col-lg-6 col-md-12 col-sm-6">
+    <!-- Title Section -->
+    <div class="row">
+      <div class="col-12">
+        <h3 class="font-weight-bold">{{details.title}}</h3>
+        @if(isExpired()){
         <img src="assets/Animation - 1703159278041.gif" height="30" alt="">
         <label>live</label>
 
-      }
-      <h2 class="mt-2">{{details.reservePrice}}</h2>
-      <p>You are a participant of this bidding.</p>
+        }
+        <h2 class="mt-2">{{details.reservePrice}}</h2>
+        <p>You are a participant of this bidding.</p>
 
-      <span class="bg-secondary px-1 fw-bold text-white rounded">{{details.endTime | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+        <span class="bg-secondary px-1 fw-bold text-white rounded">{{details.endTime | date: 'yyyy-MM-dd
+          HH:mm:ss'}}</span>
+      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 
-  <!-- History Section -->
-  <div class="row mt-4">
-    <div class="col-12">
-      <h5>History</h5>
-      <table class="table table-striped mt-2">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Price</th>
-            <th scope="col">Bid Time</th>
-            <th scope="col">Customer</th>
-          </tr>
-        </thead>
-        <tbody>
+    <!-- History Section -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <h5>History</h5>
+        <table class="table table-striped mt-2">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Price</th>
+              <th scope="col">Bid Time</th>
+            </tr>
+          </thead>
+          <tbody>
 
-          @for(bid of biddingList;track bid){
-          <tr>
+            @for(bid of biddingList;track bid){
+            <tr>
               <td>{{bid.amount}}</td>
               <td>{{bid.bidTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
-              <td>{{bid.customerID}}</td>
             </tr>
-          }
+            }
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <!-- Bid Input Section -->
-  <div class=" mt-4">
-      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">{{maxAmount ? maxAmount :details.reservePrice}}</span></p>
+    <!-- Bid Input Section -->
+    <div class=" mt-4">
+      <p class="font-weight-bold">Value must be greater than or equal to <span class="text-danger">{{maxAmount ?
+          maxAmount :details.reservePrice}}</span></p>
       <div class="row">
         <div class="col-8">
-          <input type="number" [(ngModel)]="enterPrice" class="form-control" placeholder="Enter Price" min="333.00" />
+          <input type="number" [(ngModel)]="enterPrice" class="form-control" placeholder="Enter Price" min="0" />
 
         </div>
         @if(isExpired()){
 
-          <div class="col-2">
-            <button [disabled]="enterPrice<maxAmount ||enterPrice==null" (click)="AddBid()" class="btn btn-secondary">SUBMIT</button>
-          </div>
-         }
+        <div class="col-2">
+          <button [disabled]="enterPrice < maxAmount" (click)="AddBid()" class="btn btn-secondary">SUBMIT</button>
+        </div>
+        }
 
 
+      </div>
     </div>
   </div>
-    </div>
 
 
 

@@ -11,18 +11,17 @@ export class ProductsService {
   private apiUrl = Env.baseUrl ;
 
   products(): Observable<any> {
-    console.log("apiUrl",this.apiUrl);
     return this.http.get(this.apiUrl + 'api/items/activeProduct');
   }
   productsDetails(id: any): Observable<any> {
-    https: return this.http.get(`${this.apiUrl}api/Product/GetProductByItemId/${id}`);
+    https: return this.http.get(`${this.apiUrl}api/Items/activeProduct/${id}`);
   }
 
   biddingList(id: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}api/Bidding/getBidByItemId/${id}`);
+    return this.http.get(`${this.apiUrl}api/Bidding/GetBids/${id}`);
   }
 
   AddBidding(formData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}api/Bidding/createBid`, formData);
+    return this.http.post(`${this.apiUrl}api/Bidding/PlaceBid`, formData);
   }
 }
