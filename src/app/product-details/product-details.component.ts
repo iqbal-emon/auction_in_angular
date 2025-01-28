@@ -114,11 +114,8 @@ export class ProductDetailsComponent {
   }
 
   getImageUrl(localPath: string): string {
-    return localPath
-      .replace(
-        'C:\\auctionBackend\\Images\\Uploads',
-        Env.baseUrl + '/images/Uploads'
-      )
-      .replace(/\\/g, '/');
+     return this.productService.getImageUrl(localPath);
   }
 }
+
+

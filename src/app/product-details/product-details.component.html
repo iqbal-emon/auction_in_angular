@@ -68,7 +68,8 @@
         @if(isExpired()){
 
         <div class="col-2">
-          <button [disabled]="enterPrice < maxAmount" (click)="AddBid()" class="btn btn-secondary">SUBMIT</button>
+          <button [disabled]="enterPrice < (maxAmount ? maxAmount:details.reservePrice)" (click)="AddBid()"
+            class="btn btn-secondary">SUBMIT</button>
         </div>
         }
 

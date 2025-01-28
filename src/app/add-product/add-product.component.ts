@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddUpdateModalComponent } from '../add-update-modal/add-update-modal.component';
 import { AlertModalComponent } from '../alert-modal/alert-modal.component';
 import { Env } from '../../environments/env';
+import { ProductsService } from '../products/products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -11,7 +12,10 @@ import { Env } from '../../environments/env';
   styleUrl: './add-product.component.css',
 })
 export class AddProductComponent implements OnInit {
-  constructor(private addProductService: AddProductService) {}
+  constructor(
+    private addProductService: AddProductService,
+    private productService: ProductsService
+  ) {}
   products: any = [];
   modalShow: boolean = false;
   modalMessage: any = '';
@@ -63,13 +67,7 @@ export class AddProductComponent implements OnInit {
     }
   }
   getImageUrl(localPath: string): string {
-    // Replace the local path with the server URL
-    return localPath
-      .replace(
-        'C:\\auctionBackend\\Images\\Uploads',
-        Env.baseUrl+'images/Uploads'
-      )
-      .replace(/\\/g, '/');
+    return this.productService.getImageUrl(localPath);
   }
   EditProduct(product: any) {
     console.log('product', product);

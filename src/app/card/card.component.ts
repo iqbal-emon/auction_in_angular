@@ -1,3 +1,4 @@
+import { ProductsService } from './../products/products.service';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Env } from '../../environments/env';
@@ -9,15 +10,10 @@ import { Env } from '../../environments/env';
   imports: [RouterLink],
 })
 export class CardComponent {
+  constructor(private productService: ProductsService) {}
   @Input() product: any;
   getImageUrl(localPath: string): string {
-    // Replace the local path with the server URL
-    return localPath
-      .replace(
-        'C:\\auctionBackend\\Images\\Uploads',
-        Env.baseUrl + '/images/Uploads'
-      )
-      .replace(/\\/g, '/');
+    return this.productService.getImageUrl(localPath);
   }
   navigate(id: any) {
     this.navigate(['dashboard/product/', id]);

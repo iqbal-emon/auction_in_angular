@@ -8,7 +8,7 @@ import { Env } from '../../environments/env';
 })
 export class ProductsService {
   constructor(private http: HttpClient) {}
-  private apiUrl = Env.baseUrl ;
+  private apiUrl = Env.baseUrl;
 
   products(): Observable<any> {
     return this.http.get(this.apiUrl + 'api/items/activeProduct/0');
@@ -23,5 +23,21 @@ export class ProductsService {
 
   AddBidding(formData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}api/Bidding/PlaceBid`, formData);
+  }
+
+  getImageUrl(localPath: string): string {
+    if (!localPath) {
+      console.error('Invalid local path:', localPath);
+      return ''; // Handle invalid paths gracefully
+    }
+
+    const transformedPath = localPath
+      .replace(
+        'C:\\auctionBackend\\angularAuctionBackend\\Images\\Uploads\\',
+        Env.baseUrl + 'images/uploads/'
+      )
+      .replace(/\\/g, '/');
+
+    return transformedPath;
   }
 }
