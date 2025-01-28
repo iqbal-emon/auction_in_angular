@@ -1,8 +1,22 @@
+@if(!isLoading){
 <div class="card" style="margin: 10px;">
   <img [src]="getImageUrl(product.imageURL1)" class="card-img-top" alt="Product Image" height="200">
   <div class="card-body">
-    <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-text">Price: {{product.reservePrice}}</p>
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">Price: {{ product.reservePrice }}</p>
     <a [routerLink]="['/dashboard/products', product.itemID]" class="btn btn-secondary">View Details</a>
   </div>
 </div>
+
+}
+
+@else{
+<div class="card" style="margin: 10px;">
+  <ngx-skeleton-loader count="1" appearance="circle" style="width: 100%; height: 200px;"></ngx-skeleton-loader>
+  <div class="card-body">
+    <ngx-skeleton-loader style="height: 20px; margin-bottom: 10px;" count="1"></ngx-skeleton-loader>
+    <ngx-skeleton-loader style="height: 15px; margin-bottom: 5px;" count="1"></ngx-skeleton-loader>
+    <ngx-skeleton-loader style="height: 35px; width: 100px;" count="1"></ngx-skeleton-loader>
+  </div>
+</div>
+}
